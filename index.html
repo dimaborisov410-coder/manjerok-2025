@@ -189,6 +189,19 @@ td.n{text-align:center}
   padding:7px 12px;margin-bottom:12px;border-radius:0 4px 4px 0}
 .data-note b{color:#333}
 
+/* ── SOURCE LEGEND ── */
+.source-legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;margin-top:10px}
+.sl-item{flex:1;min-width:200px;border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:flex-start}
+.sl-plan{background:#e8f0fe;border:1px solid #90caf9}
+.sl-fact{background:#e8f5e9;border:1px solid #a5d6a7}
+.sl-diff{background:#fff3e0;border:1px solid #ffcc80}
+.sl-badge{font-size:11px;font-weight:900;white-space:nowrap;padding:3px 10px;border-radius:4px;flex-shrink:0}
+.sl-plan .sl-badge{background:#1565c0;color:#fff}
+.sl-fact .sl-badge{background:#2e7d32;color:#fff}
+.sl-diff .sl-badge{background:#e65100;color:#fff}
+.sl-desc{font-size:11px;color:#333;line-height:1.5}
+.sl-desc b{color:#000}
+
 /* ── CALC FORM ── */
 .calc-form{background:#f8f9ff;border:1px solid #e0e4f0;border-radius:8px;padding:16px 20px;margin-bottom:20px}
 .calc-form-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px}
@@ -683,6 +696,20 @@ function downloadWithRates(){
 <div class="section">
   <div class="section-title">РАБОТЫ 2025 — плановые смены</div>
   <div class="data-note">Источник: <b>МАНЖЕРОК РАБОТЫ.xlsx · Лист 2</b>. Объекты: ПРИКОП, ВИЛЛЫ, ПАРКОВКА, ПСП. ★ = повышенная ЗП (01.06–15.07).</div>
+  <div class="source-legend">
+    <div class="sl-item sl-plan">
+      <div class="sl-badge">₽ ПЛАН</div>
+      <div class="sl-desc">Столбец в таблице ниже. Считается по <b>плановым сменам</b> из РАБОТЫ.xlsx: все 4 объекта включая <b>ПАРКОВКУ</b>, март–октябрь.</div>
+    </div>
+    <div class="sl-item sl-fact">
+      <div class="sl-badge">₽ ФАКТ</div>
+      <div class="sl-desc">Калькулятор ФОТ и таблица явки ниже. Считается по <b>фактическим табелям</b> ЛЮДИ: ПРИКОП + ВИЛЛЫ + ПСП, апрель–сентябрь. <b>ПАРКОВКИ нет</b> — нет табеля.</div>
+    </div>
+    <div class="sl-item sl-diff">
+      <div class="sl-badge">∆ разница</div>
+      <div class="sl-desc">Расхождение между ПЛАН и ФАКТ = смены ПАРКОВКИ + отклонение плана от факта по остальным объектам.</div>
+    </div>
+  </div>
   <div class="year-block">
     <div class="year-label year-label-2025">2025 — ПРИКОП + ВИЛЛЫ + ПАРКОВКА + ПСП · итог: 15 344 смен</div>
     <div class="legend-row">
@@ -698,7 +725,7 @@ function downloadWithRates(){
             <th rowspan="2">Месяц</th>
             <th colspan="5" class="prikop-hdr">ПРИКОП</th><th colspan="5" class="vi-hdr">ВИЛЛЫ</th><th colspan="5" class="pk-hdr">ПАРКОВКА</th><th colspan="5" class="psp25-hdr">ПСП</th>
             <th rowspan="2" class="grand-hdr">Всего</th>
-            <th rowspan="2" class="money-hdr">₽</th>
+            <th rowspan="2" class="money-hdr" title="По плановым сменам из РАБОТЫ.xlsx — включает ПАРКОВКУ, март–октябрь">₽ ПЛАН</th>
           </tr>
           <tr>
             
@@ -917,8 +944,8 @@ function downloadWithRates(){
   </div>
 </div>
 <div class="section" style="margin-top:32px">
-  <div class="section-title">Явка по объектам (из табелей)</div>
-  <div class="data-note">Источник: <b>МАНЖЕРОК ЛЮДИ *.xlsx</b> · апрель–сентябрь 2025 · фактические данные.</div>
+  <div class="section-title">Явка по объектам (из табелей) — ₽ ФАКТ</div>
+  <div class="data-note">Источник: <b>МАНЖЕРОК ЛЮДИ *.xlsx</b> · апрель–сентябрь 2025 · фактические данные. Столбец <b>₽ ФАКТ</b> = смены × ставка из калькулятора ниже.</div>
   <div class="obj-block">
           <div class="obj-hdr-bar">ПРИКОП — 748 чел.-смен</div>
           <table class="data-table">
@@ -926,7 +953,7 @@ function downloadWithRates(){
               <th>Категория</th>
               <th>Апрель</th><th>Май</th><th>Июнь</th><th>Июль</th><th>Август</th><th>Сентябрь</th>
               <th class="sub-hdr">Смен</th>
-              <th class="money-hdr">₽</th>
+              <th class="money-hdr" title="По фактической явке из табелей ЛЮДИ">₽ ФАКТ</th>
             </tr></thead>
             <tbody><tr>
               <td class="type-cell" style="color:#2e7d32;background:#e8f5e9">Официалы</td>
@@ -952,7 +979,7 @@ function downloadWithRates(){
               <th>Категория</th>
               <th>Апрель</th><th>Май</th><th>Июнь</th><th>Июль</th><th>Август</th><th>Сентябрь</th>
               <th class="sub-hdr">Смен</th>
-              <th class="money-hdr">₽</th>
+              <th class="money-hdr" title="По фактической явке из табелей ЛЮДИ">₽ ФАКТ</th>
             </tr></thead>
             <tbody><tr>
               <td class="type-cell" style="color:#2e7d32;background:#e8f5e9">Официалы</td>
@@ -988,7 +1015,7 @@ function downloadWithRates(){
               <th>Категория</th>
               <th>Апрель</th><th>Май</th><th>Июнь</th><th>Июль</th><th>Август</th><th>Сентябрь</th>
               <th class="sub-hdr">Смен</th>
-              <th class="money-hdr">₽</th>
+              <th class="money-hdr" title="По фактической явке из табелей ЛЮДИ">₽ ФАКТ</th>
             </tr></thead>
             <tbody><tr>
               <td class="type-cell" style="color:#2e7d32;background:#e8f5e9">Официалы</td>
@@ -1388,8 +1415,8 @@ function downloadWithRates(){
             </div>
 </div>
 <div class="section" style="margin-top:32px">
-  <div class="section-title">Калькулятор ФОТ 2025</div>
-  <div style="font-size:10px;color:#888;margin-bottom:14px">Период форума 01.06–15.07 считается по повышенным ставкам. Строки ₽ в таблицах обновятся автоматически.</div>
+  <div class="section-title">Калькулятор ФОТ 2025 — <span style="font-size:12px;font-weight:600;color:#2e7d32">₽ ФАКТ по табелям</span></div>
+  <div style="font-size:10px;color:#888;margin-bottom:14px">Расчёт по <b>фактической явке</b> (табели ЛЮДИ): ПРИКОП + ВИЛЛЫ + ПСП, апрель–сентябрь. Повышенный период 01.06–15.07 — по повышенным ставкам. Строки ₽ ФАКТ в таблицах выше обновятся автоматически.</div>
   <div class="calc-form">
       <div class="calc-form-header">
         <div class="calc-form-title">Ставки</div>
